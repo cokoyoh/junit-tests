@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class EmployeesTest {
+public class EmployeeRepositoryTest {
     @Autowired
     private TestEntityManager testEntityManager;
 
