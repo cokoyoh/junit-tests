@@ -9,6 +9,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -33,6 +35,17 @@ public class EmployeeRepositoryTest {
         Employee found = employeesRepository.findEmployeeByName(alex.getName());
 
         assertEquals(found.getName(), alex.getName());
+    }
+
+    @Test
+    public void shouldFindEmployeeById() {
+        Employee employee1 = new Employee("Jane Doe");
+
+        testEntityManager.persistAndFlush(employee1);
+
+        Optional<Employee> found = employeesRepository.findById(1L);
+
+        assertEquals(found.get().getName(), employee1.getName());
     }
 
 }
